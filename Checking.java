@@ -25,6 +25,17 @@ public class Checking {
         this.interest = interest;
     }
 
+    public String withdraw(double withdrawAmount) {
+        double currBalance = getBalance();
+        if (currBalance < withdrawAmount) {
+            return getFullName() +" failed to withdraw: " + withdrawAmount + " from checking account.  Balance: " +
+                    currBalance + " - insufficient funds.";
+        }
+        double updatedBalance = currBalance - withdrawAmount;
+        setBalance(updatedBalance);
+        return getFullName() +" withdrew: " + withdrawAmount + " from checking account.";
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -35,6 +46,10 @@ public class Checking {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getFullName(){
+        return getFirstName() + " " + getLastName();
     }
 
     public void setLastName(String lastName) {
@@ -80,4 +95,5 @@ public class Checking {
     public void setInterest(double interest) {
         this.interest = interest;
     }
+
 }
